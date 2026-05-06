@@ -8,9 +8,7 @@ describe('Login', () => {
     })
 
     it('TC-1: should login with valid credentials', async () => {
-        await loginPage.setUsername('standard_user')
-        await loginPage.setPassword('secret_sauce')
-        await loginPage.clickLogin()
+        await loginPage.login('standard_user', 'secret_sauce')
 
         await expect(browser).toHaveUrl(expect.stringContaining('/inventory'))
         await expect(inventoryPage.inventoryList[0]).toBeDisplayed()
@@ -18,9 +16,7 @@ describe('Login', () => {
     })
 
     it('TC-2: should show error with invalid password', async () => {
-        await loginPage.setUsername('standard_user')
-        await loginPage.setPassword('wrong_password')
-        await loginPage.clickLogin()
+        await loginPage.login('standard_user', 'wrong_password')
 
         await expect(loginPage.inputUsername).toHaveAttr('class', expect.stringContaining('error'))
         await expect(loginPage.inputPassword).toHaveAttr('class', expect.stringContaining('error'))
@@ -31,9 +27,7 @@ describe('Login', () => {
     })
 
     it('TC-3: should show error for locked out user', async () => {
-        await loginPage.setUsername('locked_out_user')
-        await loginPage.setPassword('secret_sauce')
-        await loginPage.clickLogin()
+        await loginPage.login('locked_out_user', 'secret_sauce')
 
         await expect(loginPage.inputUsername).toHaveAttr('class', expect.stringContaining('error'))
         await expect(loginPage.inputPassword).toHaveAttr('class', expect.stringContaining('error'))
@@ -55,9 +49,7 @@ describe('Login', () => {
     })
 
     it('TC-11: should show error with invalid username', async () => {
-        await loginPage.setUsername('invalid_user')
-        await loginPage.setPassword('secret_sauce')
-        await loginPage.clickLogin()
+        await loginPage.login('invalid_user', 'secret_sauce')
 
         await expect(loginPage.inputUsername).toHaveAttr('class', expect.stringContaining('error'))
         await expect(loginPage.inputPassword).toHaveAttr('class', expect.stringContaining('error'))
