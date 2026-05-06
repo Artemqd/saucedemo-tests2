@@ -37,9 +37,8 @@ class LoginPage extends Page {
     }
 
     async open () {
-    return super.open('')
+        return super.open('')
     }
 }
 
-const loginPage = new LoginPage()
-export default loginPage
+export default new LoginPage()
