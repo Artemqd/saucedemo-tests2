@@ -1,4 +1,3 @@
-import { $ } from '@wdio/globals'
 import Page from './page.js'
 
 class FooterPage extends Page {
@@ -14,6 +13,19 @@ class FooterPage extends Page {
     get linkedinIcon () {
         return $('[data-test="social-linkedin"]')
     }
+
+    async clickTwitter () {
+        await this.twitterIcon.click()
+    }
+
+    async clickFacebook () {
+        await this.facebookIcon.click()
+    }
+
+    async clickLinkedin () {
+        await this.linkedinIcon.click()
+    }
 }
 
-export default new FooterPage()
+const footerPage = new FooterPage()
+export default footerPage

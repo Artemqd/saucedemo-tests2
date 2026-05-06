@@ -1,4 +1,3 @@
-import { $ } from '@wdio/globals'
 import Page from './page.js'
 
 class LoginPage extends Page {
@@ -19,15 +18,28 @@ class LoginPage extends Page {
         return $('[data-test="error"]')
     }
 
-    async login (username, password) {
+    async setUsername (username) {
         await this.inputUsername.setValue(username)
+    }
+
+    async setPassword (password) {
         await this.inputPassword.setValue(password)
+    }
+
+    async clickLogin () {
         await this.btnLogin.click()
     }
 
-    open () {
-        return super.open('')
+    async login (username, password) {
+        await this.setUsername(username)
+        await this.setPassword(password)
+        await this.clickLogin()
+    }
+
+    async open () {
+    return super.open('')
     }
 }
 
-export default new LoginPage()
+const loginPage = new LoginPage()
+export default loginPage

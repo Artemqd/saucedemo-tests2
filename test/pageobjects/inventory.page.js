@@ -1,4 +1,3 @@
-import { $, $$ } from '@wdio/globals'
 import Page from './page.js'
 
 class InventoryPage extends Page {
@@ -50,6 +49,27 @@ class InventoryPage extends Page {
     get itemPrices () {
         return $$('.inventory_item_price')
     }
+
+    async clickCart () {
+        await this.cartIcon.click()
+    }
+
+    async clickBurgerMenu () {
+        await this.burgerMenuBtn.click()
+    }
+
+    async clickLogout () {
+        await this.logoutBtn.click()
+    }
+
+    async addFirstItemToCart () {
+        await this.firstAddToCartBtn.click()
+    }
+
+    async selectSortOption (option) {
+        await this.sortDropdown.selectByVisibleText(option)
+    }
 }
 
-export default new InventoryPage()
+const inventoryPage = new InventoryPage()
+export default inventoryPage

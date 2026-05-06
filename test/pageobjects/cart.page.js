@@ -1,4 +1,3 @@
-import { $ } from '@wdio/globals'
 import Page from './page.js'
 
 class CartPage extends Page {
@@ -10,6 +9,11 @@ class CartPage extends Page {
     get cartItemName () {
         return $('.inventory_item_name')
     }
+
+    async clickCheckout () {
+        await this.checkoutBtn.click()
+    }
 }
 
-export default new CartPage()
+const cartPage = new CartPage()
+export default cartPage

@@ -1,4 +1,3 @@
-import { $ } from '@wdio/globals'
 import Page from './page.js'
 
 class CheckoutPage extends Page {
@@ -39,19 +38,48 @@ class CheckoutPage extends Page {
         return $$('.cart_item')
     }
 
-
     get totalPrice () {
         return $('[data-test="subtotal-label"]')
     }
 
-
-     get cartErrorMessage () {
+    get errorMessage () {
         return $('[data-test="error"]')
     }
-    
-    get checkoutErrorMessage () {
-        return $('[data-test="error"]')
+
+    async clickCheckout () {
+        await this.checkoutBtn.click()
+    }
+
+    async fillFirstName (firstName) {
+        await this.firstNameField.setValue(firstName)
+    }
+
+    async fillLastName (lastName) {
+        await this.lastNameField.setValue(lastName)
+    }
+
+    async fillPostalCode (postalCode) {
+        await this.postalCodeField.setValue(postalCode)
+    }
+
+    async clickContinue () {
+        await this.continueBtn.click()
+    }
+
+    async clickFinish () {
+        await this.finishBtn.click()
+    }
+
+    async clickBackHome () {
+        await this.backHomeBtn.click()
+    }
+
+    async fillForm (firstName, lastName, postalCode) {
+        await this.fillFirstName(firstName)
+        await this.fillLastName(lastName)
+        await this.fillPostalCode(postalCode)
     }
 }
 
-export default new CheckoutPage()
+const checkoutPage = new CheckoutPage()
+export default checkoutPage
